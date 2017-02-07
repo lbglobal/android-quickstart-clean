@@ -1,6 +1,6 @@
 ## app/build.gradle 的一般设置
 
-1. 加入了 so 库 abi 输出的限定。加这个的原因是因为有些第三方 SDK 有编译出 x64 的，有些第三方 SDK 则没有，如果刚好这两个第三方 SDK 都要用，那么在 x64 机器上会导致加载 so 库的错误。要解决这个问题，要么是通通提供 x64 的 so 库，要么是通通不提供，仅提供 x86 的 so 库。
+1.加入了 so 库 abi 输出的限定。加这个的原因是因为有些第三方 SDK 有编译出 x64 的，有些第三方 SDK 则没有，如果刚好这两个第三方 SDK 都要用，那么在 x64 机器上会导致加载 so 库的错误。要解决这个问题，要么是通通提供 x64 的 so 库，要么是通通不提供，仅提供 x86 的 so 库。
 
 ```gr
 ndk {
@@ -8,13 +8,13 @@ ndk {
 }
 ```
 
-2. 多 dex 分包应该是需要的。现在的库数量和第三方 SDK 真是越搞越多了，没这个真不行。
+2.多 dex 分包应该是需要的。现在的库数量和第三方 SDK 真是越搞越多了，没这个真不行。
 
 ```gr
 multiDexEnabled true
 ```
 
-3. 既然 MultiDex 都用上了，不开大点内存，也是不行的。
+3.既然 MultiDex 都用上了，不开大点内存，也是不行的。
 
 ```gr
 dexOptions {
@@ -22,9 +22,9 @@ dexOptions {
 }
 ```
 
-4. 要编译第三方提供的 aar 包，得把目录加入到编译环境里面去。
+4.要编译第三方提供的 aar 包，得把目录加入到编译环境里面去。
 
-```shell
+```groovy
 repositories {
     flatDir {
         dirs 'libs'
@@ -151,7 +151,7 @@ public abstract class BaseViewHolder extends RecyclerView.ViewHolder {
 
 ## styles.xml 的一般设置
 
-1. 为了兼容 v19（也就是 Android 4.4）的透明状态栏，得单独在自定义主题  AppTheme 加上
+1.为了兼容 v19（也就是 Android 4.4）的透明状态栏，得单独在自定义主题  AppTheme 加上
 
 ```xm
 <item name="android:windowTranslucentStatus">true</item>
@@ -159,7 +159,7 @@ public abstract class BaseViewHolder extends RecyclerView.ViewHolder {
 
 ![屏幕快照 2017-02-07 下午4.47.15](/images/屏幕快照 2017-02-07 下午4.47.15.png)
 
-2. 有一个底部弹出动画，也是比较流行，把它加上以备不时之需。
+2.有一个底部弹出动画，也是比较流行，把它加上以备不时之需。
 
 ```xm
     <!-- 仿 iOS 底部弹出动画 -->
