@@ -157,7 +157,7 @@ public abstract class BaseViewHolder extends RecyclerView.ViewHolder {
 <item name="android:windowTranslucentStatus">true</item>
 ```
 
-![屏幕快照 2017-02-07 下午4.47.15](/images/屏幕快照 2017-02-07 下午4.47.15.png)
+![屏幕快照 2017-02-07 下午4.47.15](images/屏幕快照 2017-02-07 下午4.47.15.png)
 
 2.有一个底部弹出动画，也是比较流行，把它加上以备不时之需。
 
@@ -175,5 +175,5 @@ public abstract class BaseViewHolder extends RecyclerView.ViewHolder {
 
 这个就个人不同而语了，看具体的项目情况。
 
-![屏幕快照 2017-02-07 下午4.24.57](/images/屏幕快照 2017-02-07 下午4.24.57.png)
+![屏幕快照 2017-02-07 下午4.24.57](images/屏幕快照 2017-02-07 下午4.24.57.png)
 
