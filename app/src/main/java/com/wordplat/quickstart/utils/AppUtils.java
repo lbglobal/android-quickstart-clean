@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
 import android.os.Parcelable;
 import android.provider.Settings;
@@ -25,6 +27,18 @@ import org.json.JSONObject;
  */
 public class AppUtils {
     private static final String SHORTCUT_INSTALL = "com.android.launcher.action.INSTALL_SHORTCUT";
+
+    /**
+     * 网络是否连接
+     *
+     * @param context
+     */
+    public static boolean isConnected(Context context) {
+        ConnectivityManager connManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = connManager.getActiveNetworkInfo();
+
+        return netInfo == null || !netInfo.isConnected() ? false : true;
+    }
 
     /**
      * 创建快捷方式
