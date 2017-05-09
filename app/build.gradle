@@ -29,6 +29,9 @@ android {
     dexOptions {
         javaMaxHeapSize "4g"
     }
+    lintOptions {
+        abortOnError false
+    }
 }
 
 repositories {
@@ -40,10 +43,10 @@ repositories {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:support-v4:25.1.0'
-    compile 'com.android.support:appcompat-v7:25.1.0'
-    compile 'com.android.support:design:25.1.0'
-    compile 'com.android.support:recyclerview-v7:25.1.0'
+    compile 'com.android.support:support-v4:' + SUPPORT_LIB_VERSION
+    compile 'com.android.support:appcompat-v7:' + SUPPORT_LIB_VERSION
+    compile 'com.android.support:design:' + SUPPORT_LIB_VERSION
+    compile 'com.android.support:recyclerview-v7:' + SUPPORT_LIB_VERSION
 
     compile 'org.xutils:xutils:3.3.36'
     compile 'com.squareup.okhttp:okhttp:2.7.5'
