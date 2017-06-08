@@ -1,8 +1,7 @@
 package com.wordplat.quickstart.mvp;
 
+import com.wordplat.quickstart.bean.request.ServerRequestParams;
 import com.wordplat.quickstart.bean.response.StringResponse;
-
-import org.xutils.http.RequestParams;
 
 import rx.Observable;
 import rx.Subscriber;
@@ -17,11 +16,14 @@ import rx.schedulers.Schedulers;
 
 public class TestRequest extends BaseRequest {
 
-    public static Observable<StringResponse> getBaidu() {
+    public static Observable<StringResponse> testSSL() {
         return Observable.create(new Observable.OnSubscribe<StringResponse>() {
             @Override
             public void call(Subscriber<? super StringResponse> subscriber) {
-                requestServer(subscriber, new RequestParams("http://m.qq.com/"), StringResponse.class);
+                ServerRequestParams requestParams = new ServerRequestParams("https://api.wordplat.com/ts/v1/testssl");
+                requestParams.commit();
+
+                requestServer(subscriber, requestParams, StringResponse.class);
             }
         }).subscribeOn(Schedulers.io());
     }

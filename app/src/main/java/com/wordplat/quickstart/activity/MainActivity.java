@@ -1,41 +1,58 @@
 package com.wordplat.quickstart.activity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.wordplat.quickstart.R;
-import com.wordplat.quickstart.bean.response.StringResponse;
-import com.wordplat.quickstart.mvp.TestRequest;
+import com.wordplat.quickstart.mvp.LoadingViewListener;
+import com.wordplat.quickstart.mvp.TestPresenter;
 
 import org.xutils.view.annotation.ContentView;
-
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
+import org.xutils.view.annotation.ViewInject;
 
 @ContentView(R.layout.activity_main)
 public class MainActivity extends BaseActivity {
     private static final String TAG = "MainActivity";
 
+    @ViewInject(R.id.text) private TextView text = null;
+
+    private final TestPresenter testPresenter = new TestPresenter();
+
+    private static final int REQUEST_DATA = 524;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        TestRequest.getBaidu()
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<StringResponse>() {
-                    @Override
-                    public void call(StringResponse stringResponse) {
-                        Log.d(TAG, "##d call: 成功 -> " + stringResponse.getData());
-                    }
-                }, new Action1<Throwable>() {
-                    @Override
-                    public void call(Throwable throwable) {
-                        Log.d(TAG, "##d call: 失败");
-                    }
-                });
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        testPresenter.attachView(viewListener);
+        testPresenter.testSSL(REQUEST_DATA);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        testPresenter.detachView();
+    }
+
+    private final LoadingViewListener viewListener = new LoadingViewListener() {
+
+        @Override
+        public void onSuccess(int requestCode) {
+            switch (requestCode) {
+                case REQUEST_DATA:
+                    text.setText(testPresenter.getData());
+                    break;
+            }
+        }
+    };
 
     /**
      * 点击两次退出
