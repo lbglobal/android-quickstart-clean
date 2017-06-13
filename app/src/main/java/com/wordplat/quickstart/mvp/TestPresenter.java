@@ -37,6 +37,24 @@ public class TestPresenter extends BasePresenter<LoadingView> {
         addSubscription(subscription);
     }
 
+    public void testBaidu(final int requestCode) {
+        Subscription subscription = TestRequest.testBaidu()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<StringResponse>() {
+                    @Override
+                    public void call(StringResponse stringResponse) {
+                        data = stringResponse.getData();
+
+                        baseView.onSuccess(requestCode);
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+                        handleError(requestCode, throwable);
+                    }
+                });
+    }
+
     public String getData() {
         return data;
     }
