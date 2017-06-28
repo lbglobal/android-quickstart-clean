@@ -27,7 +27,7 @@ public class SSLHelper {
     private static final int KEY_STORE_CLIENT_PATH = R.raw.client; // 客户端要给服务器端认证的证书
     private static final String KEY_STORE_PASSWORD = "123456"; // 证书密码
 
-    private static final int KEY_STORE_TRUST_PATH = R.raw.truststore; // 客户端验证服务器端的证书库
+    private static final int KEY_STORE_TRUST_PATH = R.raw.mytruststore; // 客户端验证服务器端的证书库
     private static final String KEY_STORE_TRUST_PASSWORD = "123456"; // 证书库密码
 
     /**
